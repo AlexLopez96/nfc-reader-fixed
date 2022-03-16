@@ -7,13 +7,25 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 
+import {Ndef, NFC} from '@awesome-cordova-plugins/nfc/ngx';
+import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
 @NgModule({
   imports: [
+    HttpClientModule,
     IonicModule,
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule
+  ],
+  providers: [
+    BarcodeScanner,
+    NFC,
+    Ndef
   ],
   declarations: [Tab1Page]
 })
