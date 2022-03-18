@@ -12,7 +12,6 @@ export class DataService {
   tokenId: number;
   to: number;
   difference: number;
-  nfcArray = [];
   nfcArray$ = new BehaviorSubject([]);
   readingNfc = false;
 
@@ -60,7 +59,7 @@ export class DataService {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'ERROR',
-      message: 'NFC and QR code fields are required.',
+      message: 'You need to enter '+ (this.difference - this.nfcArray$.getValue().length) + " more NFC.",
       buttons: ['OK']
     });
     await alert.present();
