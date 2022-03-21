@@ -3,6 +3,7 @@ import {DataService} from '../../services/data.service';
 import {BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import {Ndef, NFC} from "@awesome-cordova-plugins/nfc/ngx";
 import {tick} from "@angular/core/testing";
+import {error} from "protractor";
 
 @Component({
   selector: 'app-header',
@@ -45,7 +46,7 @@ ngOnInit() {
     const flags = this.nfc.FLAG_READER_NFC_A | this.nfc.FLAG_READER_NFC_V;
 
     this.nfc.readerMode(flags).subscribe(
-      tag => {
+      async (tag) => {
         if (this.dataService.readingNfc) {
           this.dataService.nfcId = this.nfc.bytesToHexString(tag.id).match(/.{2}/g).join(':').toUpperCase();
           this.dataService.nfcArray$.next([...this.dataService.nfcArray$.getValue(), this.dataService.nfcId.toUpperCase()])

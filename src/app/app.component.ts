@@ -22,6 +22,8 @@ export class AppComponent {
       console.log({nfcArray})
       this.appRef.tick()
     })
+
+
   }
 
   deleteNfc(index){
